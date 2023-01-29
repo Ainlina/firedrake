@@ -72,6 +72,8 @@ def test_interpolate(V, mesh, which, expect, tolerance):
     assert numpy.allclose(norm(g - expect), 0, atol=tolerance)
 
 def test_interpolate_from_zany_testfunction():
+    # This depends on tfsc commit f1706ab021c12c387550a185c73787d648ce7720
+    # on branch wence/fix/interpolate_zany_element
     mesh = UnitSquareMesh(3, 3) # small nontrivial mesh
     sAr = FunctionSpace(mesh, "Argyris", 5) # scalar Argyris function space
     sCG5 = FunctionSpace(mesh, "CG", 5) # scalar CG5 function space
