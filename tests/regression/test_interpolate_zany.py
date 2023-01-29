@@ -70,3 +70,14 @@ def test_interpolate(V, mesh, which, expect, tolerance):
         g.interpolate(a + b)
 
     assert numpy.allclose(norm(g - expect), 0, atol=tolerance)
+
+def test_interpolate_from_zany_testfunction():
+    mesh = UnitSquareMesh(3, 3) # small nontrivial mesh
+    sAr = FunctionSpace(mesh, "Argyris", 5) # scalar Argyris function space
+    sCG5 = FunctionSpace(mesh, "CG", 5) # scalar CG5 function space
+    vAr = VectorFunctionSpace(mesh, "Argyris", 5) # vector Argyris function space
+    vCG5 = VectorFunctionSpace(mesh, "CG", 5) # vector CG5 function space
+    Interpolator(Function(sAr), sCG5)
+    Interpolator(TestFunction(sAr), sCG5)
+    Interpolator(Function(vAr), vCG5)
+    Interpolator(TestFunction(vAr), vCG5)
