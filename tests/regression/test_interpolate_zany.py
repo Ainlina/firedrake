@@ -74,11 +74,11 @@ def test_interpolate(V, mesh, which, expect, tolerance):
 def test_interpolate_from_zany_testfunction():
     # This depends on tfsc commit f1706ab021c12c387550a185c73787d648ce7720
     # on branch wence/fix/interpolate_zany_element
-    mesh = UnitSquareMesh(3, 3) # small nontrivial mesh
-    sAr = FunctionSpace(mesh, "Argyris", 5) # scalar Argyris function space
-    sCG5 = FunctionSpace(mesh, "CG", 5) # scalar CG5 function space
-    vAr = VectorFunctionSpace(mesh, "Argyris", 5) # vector Argyris function space
-    vCG5 = VectorFunctionSpace(mesh, "CG", 5) # vector CG5 function space
+    small_mesh = UnitSquareMesh(3, 3) # small nontrivial mesh
+    sAr = FunctionSpace(small_mesh, "Argyris", 5) # scalar Argyris function space
+    sCG5 = FunctionSpace(small_mesh, "CG", 5) # scalar CG5 function space
+    vAr = VectorFunctionSpace(small_mesh, "Argyris", 5) # vector Argyris function space
+    vCG5 = VectorFunctionSpace(small_mesh, "CG", 5) # vector CG5 function space
     Interpolator(Function(sAr), sCG5)
     Interpolator(TestFunction(sAr), sCG5)
     Interpolator(Function(vAr), vCG5)
